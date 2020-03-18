@@ -1,0 +1,18 @@
+apply plugin: 'com.android.application'
+apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
+
+android {
+    defaultConfig {
+        applicationId "com.vitorota.pokemontcg"
+    }
+}
+
+dependencies {
+    def deps = rootProject.ext.dependencies
+    def testDeps = rootProject.ext.testDependencies
+
+    implementation project(":libraries:ui_components")
+
+    implementation deps.appCompat
+    testImplementation testDependencies.jUnit
+}

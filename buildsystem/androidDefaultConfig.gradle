@@ -1,0 +1,30 @@
+if (project.hasProperty('android')) {
+    project.plugins.apply("kotlin-android")
+    project.plugins.apply("kotlin-android-extensions")
+
+    android {
+        compileSdkVersion 29
+        buildToolsVersion "29.0.3"
+        defaultConfig {
+            minSdkVersion 21
+            targetSdkVersion 29
+            versionCode 1
+            versionName "1.0"
+        }
+
+        buildTypes {
+            release {
+            }
+            debug{
+            }
+        }
+    }
+
+    dependencies{
+        def deps = rootProject.ext.dependencies
+
+        implementation deps.kotlin
+        implementation deps.kotlinExtensions
+    }
+
+}
