@@ -1,12 +1,12 @@
-package com.vitorota.pokemontcg
+package pokemontcg.features.cards.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import pokemontcg.features.cards.R
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.cards_activity_main)
     }
 }

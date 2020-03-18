@@ -13,6 +13,8 @@ dependencies {
 
     implementation project(":libraries:ui_components")
 
+    implementation project(":features:cards")
+
     implementation deps.appCompat
     testImplementation testDependencies.jUnit
 }

@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pokemontcg.features.cards">
+
+    <application>
+        <activity android:name=".ui.MainActivity" android:theme="@style/PokemonTCGTheme"/>
+    </application>
+</manifest>
