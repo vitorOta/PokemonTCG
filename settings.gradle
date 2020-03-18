@@ -1,3 +1,4 @@
 rootProject.name='PokemonTCG'
 include ':app'
 include ':libraries:ui_components'
+include ':libraries:network'

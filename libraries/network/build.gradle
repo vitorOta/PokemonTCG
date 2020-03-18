@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
+
+dependencies {
+    def deps = rootProject.ext.dependencies
+
+    api deps.retrofit
+    api deps.gson
+    implementation deps.retrofitGsonConverter
+}
