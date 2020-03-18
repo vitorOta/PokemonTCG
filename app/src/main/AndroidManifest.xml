@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/PokemonTCGTheme">
-        <activity android:name="pokemontcg.features.cards.ui.MainActivity">
+        <activity android:name="pokemontcg.features.cards.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

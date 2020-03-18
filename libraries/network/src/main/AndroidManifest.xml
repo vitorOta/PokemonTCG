@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pokemontcg.libraries.network" />
+    package="pokemontcg.libraries.network">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

@@ -11,6 +11,8 @@ internal class BasicLoggerInterceptor : Interceptor {
 
         val response = chain.proceed(request)
 
+        Log.d("BasicLoggerInterceptor", "url retornada(${response.code()}): ${request.url()}")
+
         return response
     }
 }

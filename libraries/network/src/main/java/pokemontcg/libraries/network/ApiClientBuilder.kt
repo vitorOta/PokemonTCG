@@ -9,13 +9,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClientBuilder {
-    private val baseClient = OkHttpClient()
+    private val baseClient = OkHttpClient.Builder().build()
     private val gsonDefault = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         .create()
 
+    private val defaultUrl = "https://api.pokemontcg.io/v1/"
+
     fun <T> createServiceApi(
-        serviceClass: Class<T>, baseUrl: String,
+        serviceClass: Class<T>,
+        baseUrl: String = defaultUrl,
         gson: Gson = gsonDefault,
         vararg interceptors: Interceptor
     ): T {
