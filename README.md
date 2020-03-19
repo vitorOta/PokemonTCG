@@ -1,5 +1,6 @@
 ## PokemonTCG
 Project used in the unique edition of the course "Coding android with Ota"
+consuming the api https://pokemontcg.io/
 
 <img src="https://raw.githubusercontent.com/vitorOta/PokemonTCG/master/screenshot.png" width="275">
 
