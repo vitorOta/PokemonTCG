@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.cards_activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pokemontcg.features.cards.R
 import pokemontcg.features.cards.data.network.CardsApi
 import pokemontcg.features.cards.model.Card
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            launch(Dispatchers.Main) {
+            withContext(Dispatchers.Main) {
                 cardsAdapter.submitList(cards)
             }
         }
