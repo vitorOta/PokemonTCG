@@ -10,6 +10,7 @@ consuming the api https://pokemontcg.io/
  - Kotlin
  
 #### Architecture
+- Multi-módulos
 - GodActivity (so far)
 
 #### Lib's
