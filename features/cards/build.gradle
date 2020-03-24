@@ -3,6 +3,7 @@ apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
 
 dependencies {
     def deps = rootProject.ext.dependencies
+    def testDeps = rootProject.ext.testDependencies
 
     implementation project(":libraries:ui_components")
     implementation project(":libraries:network")
@@ -11,4 +12,9 @@ dependencies {
     implementation deps.appCompat
     implementation deps.lifecycleKtx
     implementation deps.glide
+    implementation deps.koin
+    implementation deps.koinViewModel
+
+    testImplementation testDeps.jUnit
+    testImplementation testDeps.androidCoreTesting
 }

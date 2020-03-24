@@ -10,12 +10,13 @@ consuming the api https://pokemontcg.io/
  - Kotlin
  
 #### Architecture
-- Multi-módulos
-- GodActivity (so far)
+- Multi-modules
+- Clean architecture
 
 #### Lib's
 - Retrofit
 - Kotlin Coroutines
 - Gson
 - Glide
-- Architecture Components(Lifecycle)
+- Architecture Components(Lifecycle, LiveData, ViewModel)
+- Koin

@@ -3,8 +3,8 @@ package pokemontcg.features.cards.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.cards_activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import pokemontcg.features.cards.R
 import pokemontcg.libraries.ui_components.extensions.createLoadingDialog
 import pokemontcg.libraries.ui_components.extensions.showMessage
@@ -12,9 +12,7 @@ import pokemontcg.libraries.ui_components.extensions.showMessage
 class MainActivity : AppCompatActivity() {
 
     private val cardsAdapter = CardsAdapter()
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
-    }
+    private val viewModel: MainViewModel by viewModel()
 
     private val loadingDialog by lazy {
         createLoadingDialog()

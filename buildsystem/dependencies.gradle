@@ -3,6 +3,8 @@ ext {
             kotlin          : kotlin_version,
             kotlinExtensions: "1.2.0",
 
+            koin            : "2.1.5",
+
             lifecycle       : '2.2.0',
 
             appCompat       : '1.1.0',
@@ -15,11 +17,15 @@ ext {
             gson            : "2.8.6",
 
             jUnit           : "4.12",
+            archCore        : '2.1.0',
     ]
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
             kotlinExtensions     : "androidx.core:core-ktx:${versions.kotlinExtensions}",
+
+            koin                 : "org.koin:koin-android:${versions.koin}",
+            koinViewModel        : "org.koin:koin-android-viewmodel:${versions.koin}",
 
             lifecycleKtx         : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}",
             viewModelKtx         : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
@@ -36,6 +42,7 @@ ext {
     ]
 
     testDependencies = [
-            jUnit: "junit:junit:${versions.jUnit}",
+            jUnit             : "junit:junit:${versions.jUnit}",
+            androidCoreTesting: "androidx.arch.core:core-testing:${versions.archCore}",
     ]
 }

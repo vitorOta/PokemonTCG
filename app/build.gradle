@@ -16,5 +16,6 @@ dependencies {
     implementation project(":features:cards")
 
     implementation deps.appCompat
+    implementation deps.koin
     testImplementation testDependencies.jUnit
 }

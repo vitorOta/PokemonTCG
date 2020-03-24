@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".PokemonTcgApplication"
         android:theme="@style/PokemonTCGTheme">
         <activity android:name="pokemontcg.features.cards.ui.main.MainActivity">
             <intent-filter>
