@@ -22,6 +22,7 @@ ext {
             kotlinExtensions     : "androidx.core:core-ktx:${versions.kotlinExtensions}",
 
             lifecycleKtx         : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}",
+            viewModelKtx         : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
 
             appCompat            : "androidx.appcompat:appcompat:${versions.appCompat}",
             material             : "com.google.android.material:material:${versions.material}",
