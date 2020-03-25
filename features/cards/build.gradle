@@ -16,5 +16,6 @@ dependencies {
     implementation deps.koinViewModel
 
     testImplementation testDeps.jUnit
+    testImplementation testDeps.koinTest
     testImplementation testDeps.androidCoreTesting
 }

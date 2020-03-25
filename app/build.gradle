@@ -18,4 +18,5 @@ dependencies {
     implementation deps.appCompat
     implementation deps.koin
     testImplementation testDependencies.jUnit
+    testImplementation testDependencies.koinTest
 }

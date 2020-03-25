@@ -44,5 +44,6 @@ ext {
     testDependencies = [
             jUnit             : "junit:junit:${versions.jUnit}",
             androidCoreTesting: "androidx.arch.core:core-testing:${versions.archCore}",
+            koinTest          : "org.koin:koin-test:${versions.koin}",
     ]
 }
