@@ -15,7 +15,7 @@ if (project.hasProperty('android')) {
         buildTypes {
             release {
             }
-            debug{
+            debug {
             }
         }
 
@@ -27,7 +27,7 @@ if (project.hasProperty('android')) {
         resourcePrefix "${project.name}_"
     }
 
-    dependencies{
+    dependencies {
         def deps = rootProject.ext.dependencies
 
         implementation deps.kotlin

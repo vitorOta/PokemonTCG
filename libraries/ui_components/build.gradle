@@ -10,4 +10,6 @@ dependencies {
     api deps.constraintLayout
     api deps.material
     api deps.viewModelKtx
+
+    testImplementation project(":libraries:testutils")
 }

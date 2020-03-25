@@ -1,5 +1,6 @@
 package pokemontcg.libraries.ui_components
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,15 +18,25 @@ abstract class BaseViewModel : ViewModel() {
 
     fun doAsyncWork(work: suspend () -> Unit) {
         viewModelScope.launch {
-            _isLoading.value = true
+            setLoading(true)
             try {
                 work()
             } catch (e: Exception) {
-                _showError.call(e.message)
+                setError(e.message)
                 Timber.e(e.message)
             }
-            _isLoading.value = false
+            setLoading(false)
         }
+    }
+
+    @VisibleForTesting
+    fun setError(message: String?) {
+        _showError.call(message)
+    }
+
+    @VisibleForTesting
+    fun setLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
     }
 
 }
