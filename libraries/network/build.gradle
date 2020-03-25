@@ -7,4 +7,5 @@ dependencies {
     api deps.retrofit
     api deps.gson
     implementation deps.retrofitGsonConverter
+    implementation deps.timber
 }

@@ -5,6 +5,7 @@ dependencies {
     def deps = rootProject.ext.dependencies
 
     implementation deps.appCompat
+    implementation deps.timber
     api deps.constraintLayout
     api deps.material
     api deps.viewModelKtx

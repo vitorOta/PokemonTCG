@@ -11,6 +11,7 @@ dependencies {
     def deps = rootProject.ext.dependencies
     def testDeps = rootProject.ext.testDependencies
 
+    implementation project(":libraries:common")
     implementation project(":libraries:ui_components")
 
     implementation project(":features:cards")

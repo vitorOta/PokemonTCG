@@ -3,6 +3,8 @@ ext {
             kotlin          : kotlin_version,
             kotlinExtensions: "1.2.0",
 
+            timber          : "4.7.1",
+
             koin            : "2.1.5",
 
             lifecycle       : '2.2.0',
@@ -19,11 +21,14 @@ ext {
             jUnit           : "4.12",
             archCore        : '2.1.0',
             mockk           : "1.9",
+            mockWebServer   : '4.4.0',
     ]
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
             kotlinExtensions     : "androidx.core:core-ktx:${versions.kotlinExtensions}",
+
+            timber               : "com.jakewharton.timber:timber:${versions.timber}",
 
             koin                 : "org.koin:koin-android:${versions.koin}",
             koinViewModel        : "org.koin:koin-android-viewmodel:${versions.koin}",
@@ -47,5 +52,6 @@ ext {
             androidCoreTesting: "androidx.arch.core:core-testing:${versions.archCore}",
             koinTest          : "org.koin:koin-test:${versions.koin}",
             mockk             : "io.mockk:mockk:${versions.mockk}",
+            mockWebServer     : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}",
     ]
 }

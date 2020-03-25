@@ -1,11 +1,11 @@
 package pokemontcg.libraries.ui_components
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -22,7 +22,7 @@ abstract class BaseViewModel : ViewModel() {
                 work()
             } catch (e: Exception) {
                 _showError.call(e.message)
-                Log.e("BaseViewModel", e.message)
+                Timber.e(e.message)
             }
             _isLoading.value = false
         }

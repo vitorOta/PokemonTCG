@@ -3,4 +3,6 @@ apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
 
 dependencies {
     def deps = rootProject.ext.dependencies
+
+    api deps.timber
 }
