@@ -1,7 +1,6 @@
 package pokemontcg.features.cards.data
 
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -11,12 +10,12 @@ import org.junit.Test
 import pokemontcg.features.cards.data.network.CardsApi
 import pokemontcg.features.cards.data.network.CardsNetworkRepository
 import pokemontcg.features.cards.data.network.schemas.ListCardResponse
-import pokemontcg.features.cards.loadJsonFromResources
 import pokemontcg.libraries.common.mapTo
 import pokemontcg.libraries.network.ApiClientBuilder
 import pokemontcg.libraries.network.exceptions.ServerErrorException
 import pokemontcg.libraries.network.fromJson
 import pokemontcg.libraries.network.gsonDefault
+import pokemontcg.libraries.testutils.enqueueResponse
 
 class CardsNetworkRepositoryTest {
 
@@ -40,17 +39,11 @@ class CardsNetworkRepositoryTest {
         server.shutdown()
     }
 
-    fun MockWebServer.enqueueResponse(responseCode: Int, body: String) {
-        val response = MockResponse()
-            .setResponseCode(responseCode)
-            .setBody(body)
-        this.enqueue(response)
-    }
-
     @Test
     fun `listCards com sucesso`() = runBlocking {
         //assert
-        val jsonResponse = loadJsonFromResources("listCards.json")
+        val jsonResponse =
+            pokemontcg.libraries.testutils.loadJsonFromResources("listCards.json")
         server.enqueueResponse(200, jsonResponse)
 
         //act

@@ -15,9 +15,6 @@ dependencies {
     implementation deps.koin
     implementation deps.koinViewModel
 
-    testImplementation testDeps.jUnit
+    testImplementation project(":libraries:testutils")
     testImplementation testDeps.koinTest
-    testImplementation testDeps.mockk
-    testImplementation testDeps.mockWebServer
-    testImplementation testDeps.androidCoreTesting
 }

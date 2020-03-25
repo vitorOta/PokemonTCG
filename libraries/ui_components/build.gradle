@@ -3,6 +3,7 @@ apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
 
 dependencies {
     def deps = rootProject.ext.dependencies
+    def testDeps = rootProject.ext.testDependencies
 
     implementation deps.appCompat
     implementation deps.timber

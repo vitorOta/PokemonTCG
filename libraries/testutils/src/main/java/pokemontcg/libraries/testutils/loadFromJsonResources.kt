@@ -1,4 +1,4 @@
-package pokemontcg.features.cards
+package pokemontcg.libraries.testutils
 
 import java.io.File
 

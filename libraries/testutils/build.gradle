@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
+
+dependencies {
+    def testDeps = rootProject.ext.testDependencies
+
+    api testDeps.jUnit
+    api testDeps.mockk
+    api testDeps.mockWebServer
+    api testDeps.coroutinesTest
+    api testDeps.androidCoreTesting
+}
