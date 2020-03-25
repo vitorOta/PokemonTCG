@@ -17,5 +17,6 @@ dependencies {
 
     testImplementation testDeps.jUnit
     testImplementation testDeps.koinTest
+    testImplementation testDeps.mockk
     testImplementation testDeps.androidCoreTesting
 }

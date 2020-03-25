@@ -18,6 +18,7 @@ ext {
 
             jUnit           : "4.12",
             archCore        : '2.1.0',
+            mockk           : "1.9",
     ]
 
     dependencies = [
@@ -45,5 +46,6 @@ ext {
             jUnit             : "junit:junit:${versions.jUnit}",
             androidCoreTesting: "androidx.arch.core:core-testing:${versions.archCore}",
             koinTest          : "org.koin:koin-test:${versions.koin}",
+            mockk             : "io.mockk:mockk:${versions.mockk}",
     ]
 }
