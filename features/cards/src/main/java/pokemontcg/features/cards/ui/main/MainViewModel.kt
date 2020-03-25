@@ -16,9 +16,9 @@ internal class MainViewModel(private val listCardsUseCase: ListCardsUseCase) : B
 
     fun init() {
         if (!isInitialized) {
-            isInitialized = true
             doAsyncWork {
                 _cards.value = listCardsUseCase.execute(null)
+                isInitialized = true
             }
         }
     }

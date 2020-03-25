@@ -11,6 +11,7 @@ import org.junit.Test
 import pokemontcg.features.cards.mockCard
 import pokemontcg.features.cards.ui.main.MainViewModel
 import pokemontcg.features.cards.usecase.ListCardsUseCase
+import pokemontcg.libraries.network.exceptions.ServerErrorException
 import pokemontcg.libraries.testutils.CoroutineTestRule
 
 class MainViewModelTest {
@@ -33,7 +34,7 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `init with success and fill cards correctly`() {
+    fun `init with success, set initialized true and fill cards correctly`() {
         //arrange
         val cards = listOf(mockCard())
         coEvery { useCase.execute(null) } returns cards
@@ -42,6 +43,20 @@ class MainViewModelTest {
         viewModel.init()
 
         //assert
+        assert(viewModel.isInitialized)
         assertEquals(cards, viewModel.cards.value)
+    }
+
+    @Test
+    fun `init with error from usecase, let initialized as false and NOT fill cards`() {
+        //arrange
+        coEvery { useCase.execute(null) } throws ServerErrorException()
+
+        //act
+        viewModel.init()
+
+        //assert
+        assertEquals(false, viewModel.isInitialized)
+        assert(viewModel.cards.value.isNullOrEmpty())
     }
 }
