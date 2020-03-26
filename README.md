@@ -20,3 +20,10 @@ consuming the api https://pokemontcg.io/
 - Glide
 - Architecture Components(Lifecycle, LiveData, ViewModel)
 - Koin
+
+#### Test Lib's
+- jUnit
+- Mockk
+- MockWebServer
+- CoroutinesTest
+- Android core testing
