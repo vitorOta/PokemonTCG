@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.mockk.spyk
 import io.mockk.verify
 import io.mockk.verifyOrder
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import pokemontcg.libraries.testutils.CoroutineTestRule
@@ -56,17 +56,5 @@ class BaseViewModelTest {
         }
 
         assertEquals(errorMessageExpected, viewModel.showError.value)
-    }
-}
-
-class ViewModelTest : BaseViewModel() {
-    fun callSuccess(work: () -> Unit) {
-        doAsyncWork { work() }
-    }
-
-    fun callError(errorMessage: String) {
-        doAsyncWork {
-            throw Exception(errorMessage)
-        }
     }
 }
