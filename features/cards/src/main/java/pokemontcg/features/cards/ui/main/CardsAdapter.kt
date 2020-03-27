@@ -16,8 +16,6 @@ import pokemontcg.libraries.common.ViewState
 internal class CardsAdapter(private val onItemClick: (Card) -> Unit) :
     ListAdapter<Pair<Card, ViewState<Boolean>>, CardsAdapter.ViewHolder>(DIFF_UTIL) {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.cards_item_card, parent, false)
@@ -26,24 +24,30 @@ internal class CardsAdapter(private val onItemClick: (Card) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        val card = item.first
-        val state = item.second
+        holder.bind(item, position)
+    }
 
-        with(holder.itemView) {
-            cards_tvName.text = card.name
-            cards_imageview.loadImage(card.imageUrl)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(item: Pair<Card, ViewState<Boolean>>, position: Int) {
+            val card = item.first
+            val state = item.second
 
-            val color = when (state) {
-                is ViewState.Error -> Color.DKGRAY
-                is ViewState.Success -> if (state.data) Color.GREEN else Color.RED
-                else -> Color.WHITE
+            with(itemView) {
+                cards_tvName.text = card.name
+                cards_imageview.loadImage(card.imageUrl)
+
+                val color = when (state) {
+                    is ViewState.Error -> Color.DKGRAY
+                    is ViewState.Success -> if (state.data) Color.GREEN else Color.RED
+                    else -> Color.WHITE
+                }
+
+                cards_progressbar.visibility =
+                    if (state as? ViewState.Loading<Boolean> != null) View.VISIBLE else View.GONE
+
+                setBackgroundColor(color)
+                setOnClickListener { onItemClick(card) }
             }
-
-            cards_progressbar.visibility =
-                if (state as? ViewState.Loading<Boolean> != null) View.VISIBLE else View.GONE
-
-            setBackgroundColor(color)
-            setOnClickListener { onItemClick(card) }
         }
     }
 }
