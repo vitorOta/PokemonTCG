@@ -57,7 +57,7 @@ private object DIFF_UTIL : DiffUtil.ItemCallback<Pair<Card, ViewState<Boolean>>>
         oldItem: Pair<Card, ViewState<Boolean>>,
         newItem: Pair<Card, ViewState<Boolean>>
     ): Boolean {
-        return oldItem.first == newItem.first
+        return oldItem.first.id == newItem.first.id
     }
 
     override fun areContentsTheSame(
