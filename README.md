@@ -1,5 +1,3 @@
-# (In progress)
-
 ## PokemonTCG
 Project used in the unique edition of the course "Coding android with Ota"
 consuming the api https://pokemontcg.io/
