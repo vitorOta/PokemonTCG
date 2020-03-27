@@ -4,6 +4,9 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +17,7 @@ import pokemontcg.features.cards.ui.extensions.loadImage
 import pokemontcg.libraries.common.ViewState
 
 internal class CardsAdapter(private val onItemClick: (Card) -> Unit) :
-    ListAdapter<Pair<Card, ViewState<Boolean>>, CardsAdapter.ViewHolder>(DIFF_UTIL) {
+    ListAdapter<LiveData<Pair<Card, ViewState<Boolean>>>, CardsAdapter.ViewHolder>(DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -28,43 +31,51 @@ internal class CardsAdapter(private val onItemClick: (Card) -> Unit) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: Pair<Card, ViewState<Boolean>>, position: Int) {
-            val card = item.first
-            val state = item.second
 
-            with(itemView) {
-                cards_tvName.text = card.name
-                cards_imageview.loadImage(card.imageUrl)
+        private var currentLiveData: LiveData<Pair<Card, ViewState<Boolean>>>? = null
 
-                val color = when (state) {
-                    is ViewState.Error -> Color.DKGRAY
-                    is ViewState.Success -> if (state.data) Color.GREEN else Color.RED
-                    else -> Color.WHITE
+        fun bind(item: LiveData<Pair<Card, ViewState<Boolean>>>, position: Int) {
+            val lifecycleOwner = itemView.context as AppCompatActivity
+            currentLiveData?.removeObservers(lifecycleOwner)
+            currentLiveData = item
+            item.observe(lifecycleOwner, Observer {
+                val card = it.first
+                val state = it.second
+
+                with(itemView) {
+                    cards_tvName.text = card.name
+                    cards_imageview.loadImage(card.imageUrl)
+
+                    val color = when (state) {
+                        is ViewState.Error -> Color.DKGRAY
+                        is ViewState.Success -> if (state.data) Color.GREEN else Color.RED
+                        else -> Color.WHITE
+                    }
+
+                    cards_progressbar.visibility =
+                        if (state as? ViewState.Loading<Boolean> != null) View.VISIBLE else View.GONE
+
+                    setBackgroundColor(color)
+                    setOnClickListener { onItemClick(card) }
                 }
-
-                cards_progressbar.visibility =
-                    if (state as? ViewState.Loading<Boolean> != null) View.VISIBLE else View.GONE
-
-                setBackgroundColor(color)
-                setOnClickListener { onItemClick(card) }
-            }
+            })
         }
     }
 }
 
-private object DIFF_UTIL : DiffUtil.ItemCallback<Pair<Card, ViewState<Boolean>>>() {
+private object DIFF_UTIL : DiffUtil.ItemCallback<LiveData<Pair<Card, ViewState<Boolean>>>>() {
     override fun areItemsTheSame(
-        oldItem: Pair<Card, ViewState<Boolean>>,
-        newItem: Pair<Card, ViewState<Boolean>>
+        oldItem: LiveData<Pair<Card, ViewState<Boolean>>>,
+        newItem: LiveData<Pair<Card, ViewState<Boolean>>>
     ): Boolean {
-        return oldItem.first.id == newItem.first.id
+        return oldItem.value?.first?.id == newItem.value?.first?.id
     }
 
     override fun areContentsTheSame(
-        oldItem: Pair<Card, ViewState<Boolean>>,
-        newItem: Pair<Card, ViewState<Boolean>>
+        oldItem: LiveData<Pair<Card, ViewState<Boolean>>>,
+        newItem: LiveData<Pair<Card, ViewState<Boolean>>>
     ): Boolean {
-        return oldItem.second == newItem.second
+        return oldItem.value?.second == newItem.value?.second
     }
 
 }

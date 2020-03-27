@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.cards.observe(this, Observer {
+        viewModel.fillListCards.observe(this, Observer {
             cardsAdapter.submitList(it)
         })
 

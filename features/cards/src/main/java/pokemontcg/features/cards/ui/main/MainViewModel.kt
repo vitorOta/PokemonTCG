@@ -1,6 +1,6 @@
 package pokemontcg.features.cards.ui.main
 
-import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +11,7 @@ import pokemontcg.features.cards.model.Card
 import pokemontcg.features.cards.usecase.ListCardsUseCase
 import pokemontcg.libraries.common.ViewState
 import pokemontcg.libraries.ui_components.BaseViewModel
+import pokemontcg.libraries.ui_components.SingleLiveEvent
 import timber.log.Timber
 import kotlin.random.Random
 
@@ -21,7 +22,7 @@ internal class MainViewModel(private val listCardsUseCase: ListCardsUseCase) : B
 
     val batch = HashMap<String, MutableLiveData<Pair<Card, ViewState<Boolean>>>>()
 
-    val cards = MediatorLiveData<List<Pair<Card, ViewState<Boolean>>>>()
+    val fillListCards = SingleLiveEvent<List<LiveData<Pair<Card, ViewState<Boolean>>>>>()
 
     suspend fun init() {
         if (!isInitialized) {
@@ -33,8 +34,6 @@ internal class MainViewModel(private val listCardsUseCase: ListCardsUseCase) : B
                         value = Pair(it, ViewState.NotInitialized<Boolean>())
                     }
                     batch[it.id] = liveData
-
-                    cards.addSource(liveData) { updateCards() }
 
                     Timber.d("AAAA_$it")
                 }
@@ -48,20 +47,17 @@ internal class MainViewModel(private val listCardsUseCase: ListCardsUseCase) : B
     }
 
     private fun startBatch() {
-        viewModelScope.launch {
-            batch.values.forEach() {
-                viewModelScope.launch {
-                    searchCardStatus(it.value!!.first)
-                }
-                delay(500)
+        batch.values.forEach() {
+            viewModelScope.launch {
+                searchCardStatus(it.value!!.first)
             }
         }
     }
 
     private fun updateCards() {
-        cards.value = batch.map {
-            it.value.value!!
-        }.toMutableList()
+        fillListCards.call(batch.map {
+            it.value
+        }.toMutableList())
     }
 
 
