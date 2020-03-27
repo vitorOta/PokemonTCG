@@ -1,1 +1,1 @@
-<img src="https://raw.githubusercontent.com/vitorOta/PokemonTCG/async_simultaneous_calls_livedata_adapter/video.gif" width="275">
+<img src="https://raw.githubusercontent.com/vitorOta/PokemonTCG/async_simultaneous_calls_livedata_adapter/screen.gif" width="275">
