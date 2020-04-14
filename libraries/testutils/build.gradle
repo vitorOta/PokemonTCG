@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply from: rootProject.file('buildsystem/androidDefaultConfig.gradle')
-
+android{
+    lintOptions{
+        disable 'InvalidPackage'
+    }
+}
 dependencies {
     def testDeps = rootProject.ext.testDependencies
 
