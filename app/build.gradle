@@ -5,6 +5,8 @@ android {
     defaultConfig {
         applicationId "com.vitorota.pokemontcg"
     }
+
+    resourcePrefix ""
 }
 
 dependencies {
